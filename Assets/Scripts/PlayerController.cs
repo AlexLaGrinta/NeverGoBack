@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     private InputManager inputManager;  // Référence unique à InputManager
     private Transform cameraTransform;
 
+    private Animator anim;
+
     [SerializeField]
     private float playerSpeed = 2.0f;
     [SerializeField]
@@ -22,15 +24,20 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 velocity; // Utiliser velocity pour gérer la vitesse du joueur
 
+    private bool isJumping;
+
+
     private void Start()
     {
         controller = GetComponent<CharacterController>();
         inputManager = InputManager.Instance; // Récupère l'instance du InputManager déjà existante
         cameraTransform = Camera.main.transform;
+        anim = GetComponentInChildren<Animator>();
     }
 
     void Update()
     {
+
         groundedPlayer = controller.isGrounded;
 
         // Réinitialise la vitesse verticale si on est au sol
@@ -49,6 +56,20 @@ public class PlayerController : MonoBehaviour
         // Normalisation pour éviter une vitesse plus rapide en diagonale
         move.y = 0f;
         move = move.normalized;
+
+        //bool isMoving = move.magnitude > 0.1f;
+        //if (isMoving)
+        //{
+        //    anim.SetFloat("Speed", 1f);
+        //} else
+        //{
+        //    anim.SetFloat("Speed", 0f);
+        //}
+        float movementMagnitude = Mathf.Clamp01(move.magnitude);
+        anim.SetFloat("Speed", movementMagnitude);
+        anim.SetBool("isRunning", movementMagnitude > 0);
+
+        //animator.SetBool("isRunning", move.magnitude > 0);
 
         // Ajout d'une friction pour ralentir le joueur quand il ne bouge pas
         if (groundedPlayer)
@@ -75,7 +96,25 @@ public class PlayerController : MonoBehaviour
         // Gère le saut
         if (inputManager.PlayerJumpedThisFrame() && groundedPlayer)
         {
+            anim.SetBool("isJumping", true);
+            isJumping = true;
             playerVelocity.y += Mathf.Sqrt(jumpHeight * -2.0f * gravityValue); // Applique la force de saut
+            bool value = anim.GetBool("isJumping");
+            Debug.Log(value);
+        }
+        else if (groundedPlayer)
+        {
+            anim.SetBool("onFloor", true);
+            anim.SetBool("isJumping", false);
+            isJumping = false;
+            anim.SetBool("isFalling",false);
+        } else
+        {
+            anim.SetBool("onFloor", false);
+            if (isJumping)
+            {
+                anim.SetBool("isFalling",true);
+            }
         }
 
         // Applique la gravité pour le mouvement vertical
