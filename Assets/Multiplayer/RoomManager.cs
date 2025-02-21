@@ -2,9 +2,19 @@ using UnityEngine;
 using Photon.Pun;
 public class RoomManager : MonoBehaviourPunCallbacks
 {
+    public static RoomManager instance;
+
     public GameObject player;
     [Space]
     public Transform spawnPoint;
+    [Space]
+    public GameObject roomCam;
+
+
+    void Awake()
+    {
+        instance = this;
+    }
 
     void Start()
     {
@@ -38,10 +48,27 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
         Debug.Log("We are connected in a room");
 
-        // Instancier le joueur local et récupérer la référence PhotonView pour le contrôle
+        roomCam.SetActive(false);
+
+        // Instancier le joueur local et rï¿½cupï¿½rer la rï¿½fï¿½rence PhotonView pour le contrï¿½le
         GameObject _player = PhotonNetwork.Instantiate(player.name, spawnPoint.position, Quaternion.identity);
 
-        // Vérifier que ce joueur est bien le propriétaire du PhotonView
+        // Vï¿½rifier que ce joueur est bien le propriï¿½taire du PhotonView
+        PhotonView photonView = _player.GetComponent<PhotonView>();
+        if (photonView.IsMine)
+        {
+            _player.GetComponent<PlayerSetup>().IsLocalPlayer();
+        }
+        else
+        {
+            _player.GetComponent<PlayerSetup>().IsNotLocalPlayer();
+        }
+    }
+
+    public void RespawnPlayer()
+    {
+        GameObject _player = PhotonNetwork.Instantiate(player.name, spawnPoint.position, Quaternion.identity);
+
         PhotonView photonView = _player.GetComponent<PhotonView>();
         if (photonView.IsMine)
         {
