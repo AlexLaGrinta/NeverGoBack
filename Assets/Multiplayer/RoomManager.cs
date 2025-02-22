@@ -9,38 +9,35 @@ public class RoomManager : MonoBehaviourPunCallbacks
     public Transform spawnPoint;
     [Space]
     public GameObject roomCam;
+    [Space]
+    public GameObject nameUI;
+    public GameObject connectingUI;
 
+
+    private string nickname = "unnamed";
+
+    public string roomNameToJoin = "test";
 
     void Awake()
     {
         instance = this;
     }
 
-    void Start()
+    public void ChangeNickname(string _name)
+    {
+        nickname = _name;
+    }
+
+    public void JoinRoomButtonPressed()
     {
         Debug.Log("Connecting...");
         PhotonNetwork.SerializationRate = 20;
-        PhotonNetwork.ConnectUsingSettings();
+        PhotonNetwork.JoinOrCreateRoom(roomNameToJoin, null, null);
+
+        nameUI.SetActive(false);
+        connectingUI.SetActive(true);
     }
 
-    public override void OnConnectedToMaster()
-    {
-        base.OnConnectedToMaster();
-
-        Debug.Log("Connected to Server");
-
-        PhotonNetwork.JoinLobby();
-    }
-
-
-    public override void OnJoinedLobby()
-    {
-        base.OnJoinedLobby();
-
-        PhotonNetwork.JoinOrCreateRoom("test", null, null);
-
-        Debug.Log("We are in the lobby");
-    }
 
     public override void OnJoinedRoom()
     {
@@ -63,6 +60,9 @@ public class RoomManager : MonoBehaviourPunCallbacks
         {
             _player.GetComponent<PlayerSetup>().IsNotLocalPlayer();
         }
+
+        _player.GetComponent<PhotonView>().RPC("SetNickname", RpcTarget.AllBuffered, nickname);
+
     }
 
     public void RespawnPlayer()
