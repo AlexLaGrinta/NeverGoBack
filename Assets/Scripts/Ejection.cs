@@ -3,8 +3,8 @@ using Photon.Pun;
 
 public class Ejection : MonoBehaviourPun
 {
-    [SerializeField] private float ejectForce = 15f; // Force d'éjection
-    [SerializeField] private float ejectDuration = 2f; // Durée pendant laquelle le joueur est éjecté
+    private float ejectForce = 15f; // Force d'éjection
+    private float ejectDuration = 1f; // Durée pendant laquelle le joueur est éjecté
     private CharacterController controller;
     private Vector3 currentEjectDirection = Vector3.zero; // Direction en cours d'éjection
     private float ejectTimer = 0f; // Chronométrage de l'éjection active

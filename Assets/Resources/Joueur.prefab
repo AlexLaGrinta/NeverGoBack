@@ -621,8 +621,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 276b0353482e4486b9e400df51572165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ejectForce: 15
-  ejectDuration: 2
 --- !u!114 &3773237778572202366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -635,8 +633,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d013258f471f54ef19b1d3128662c0dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ejectForce: 30
-  ejectDuration: 2
 --- !u!1 &6688800170564368981
 GameObject:
   m_ObjectHideFlags: 0

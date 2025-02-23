@@ -2,46 +2,39 @@ using UnityEngine;
 
 public class MoveAllerRetour : MonoBehaviour
 {
-    // Distance à parcourir (30 mètres)
-    public float distanceToMove = 30f;
+    private float distanceToMove = 25f;
+    private float moveSpeed = 10f;
+    private float radius = 0.5f; // Rayon de l'objet pour la rotation réaliste (exemple : une roue)
 
-    // Vitesse du mouvement
-    public float moveSpeed = 10f;
-
-    // Position de départ et position cible
     private Vector3 startPosition;
     private Vector3 targetPosition;
 
-    // État du mouvement (vers l'avant ou vers l'arrière)
     private bool movingForward = false;
     private bool shouldMove = false;
 
     void Start()
     {
-        // Enregistrer la position de départ
-        startPosition = transform.position;
+        startPosition = transform.position; // Position initiale
     }
 
     void Update()
     {
-        // Activer le mouvement lorsque l'utilisateur appuie sur la touche "Espace"
-        if (Input.GetKeyDown(KeyCode.Space) && !shouldMove)
+        if (!shouldMove)
         {
-            targetPosition = startPosition + transform.forward * distanceToMove;
-            movingForward = true;  // Commence par bouger vers l'avant
+            targetPosition = startPosition + new Vector3(0f, 0f, -distanceToMove); // Déplacement sur l'axe X
+            movingForward = true;
             shouldMove = true;
         }
 
-        // Si le mouvement est activé
         if (shouldMove)
         {
-            // Déplacer l'objet
+            Vector3 previousPosition = transform.position; // Sauvegarde la position précédente
+
             if (movingForward)
             {
-                // Vers la position cible
                 transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
 
-                // Si la cible est atteinte, on change de direction (vers l'arrière)
+                // Si l'objet atteint la cible, il commence à revenir
                 if (Vector3.Distance(transform.position, targetPosition) < 0.01f)
                 {
                     movingForward = false;
@@ -49,15 +42,24 @@ public class MoveAllerRetour : MonoBehaviour
             }
             else
             {
-                // Retourner vers la position de départ
                 transform.position = Vector3.MoveTowards(transform.position, startPosition, moveSpeed * Time.deltaTime);
 
-                // Si la position de départ est atteinte, arrêter le mouvement
+                // Si l'objet revient à la position de départ, le mouvement s'arrête
                 if (Vector3.Distance(transform.position, startPosition) < 0.01f)
                 {
                     shouldMove = false;
                 }
             }
+
+            // Calcul de la distance parcourue
+            Vector3 movement = transform.position - previousPosition;
+            float distanceMoved = movement.magnitude;
+
+            // Calcul de l'angle de rotation (basé sur le rayon et la distance parcourue)
+            float rotationAngle = (distanceMoved / (2 * Mathf.PI * radius)) * 360f;
+
+            // Appliquer la rotation sur l'axe Z (comme un roulement sur l'axe X)
+            transform.Rotate(new Vector3(0f, -rotationAngle, 0f));
         }
     }
 }
