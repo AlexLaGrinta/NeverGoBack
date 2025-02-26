@@ -1,6 +1,7 @@
 using UnityEngine;
 using Photon.Pun;
 using TMPro;
+using Cinemachine;
 
 public class PlayerSetup : MonoBehaviour
 {
@@ -25,9 +26,11 @@ public class PlayerSetup : MonoBehaviour
         {
             FirstPersonController FirstPerson = Player.GetComponent<FirstPersonController>();
             FirstPerson.enabled = true;
+            FirstPerson.mouseSensitivity = PlayerPrefs.GetFloat("Sensitivity", 1.0f); ;
 
         }
         nicknameText.GetComponent<MeshRenderer>().enabled = false;
+        camera.GetComponent<CinemachineVirtualCamera>().m_Lens.FieldOfView = PlayerPrefs.GetFloat("FOV", 80.0f);
         //inputManager.enabled = true;
     }
 
