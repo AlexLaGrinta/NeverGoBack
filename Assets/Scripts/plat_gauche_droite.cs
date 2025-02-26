@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MovingPlatform : MonoBehaviour
+public class Plat_g_d : MonoBehaviour
 {
     public float moveSpeed = 2f;       // Vitesse de déplacement
     public float moveDistance = 3f;    // Distance de déplacement sur l'axe Z
