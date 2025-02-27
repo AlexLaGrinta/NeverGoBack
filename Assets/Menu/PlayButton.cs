@@ -3,11 +3,26 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class PlayButton : MonoBehaviour
 {
-    public Button PLAY; 
+    public Button PLAY;
+
+    public Canvas Gamemode;
+    public Canvas Main;
+
+    private void Start()
+    {
+        Gamemode.enabled = false;
+    }
+
+    public void BackMain()
+    {
+        Gamemode.enabled = false;
+        Main.enabled = true;
+    }
 
     public void Play()
     {
-        SceneManager.LoadScene("MapScene");
+        Gamemode.enabled = true;
+        Main.enabled = false;
 
     }
 }

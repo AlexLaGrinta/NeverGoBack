@@ -18,10 +18,11 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
     public string roomNameToJoin = "test";
 
-    void Awake()
+    private void Awake()
     {
         instance = this;
     }
+
 
     public void ChangeNickname(string _name)
     {

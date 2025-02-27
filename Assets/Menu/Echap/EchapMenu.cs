@@ -27,6 +27,7 @@ public class EchapMenu : MonoBehaviour
     public void ExitButton()
     {
         PhotonNetwork.LeaveRoom();
+        PhotonNetwork.JoinLobby();
         SceneManager.LoadScene("Main Menu");
     }
 

@@ -4,6 +4,7 @@ using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class RoomList : MonoBehaviourPunCallbacks
 {
@@ -12,82 +13,68 @@ public class RoomList : MonoBehaviourPunCallbacks
     public GameObject roomManagerGameobject;
     public RoomManager roomManager;
 
-
     [Header("UI")] public Transform roomListParent;
     public GameObject roomListItemPrefab;
 
-
     private List<RoomInfo> cachedRoomList = new List<RoomInfo>();
-
 
     public void ChangeRoomToCreateName(string _roomName)
     {
-        roomManager.roomNameToJoin = _roomName;
+        roomManager.roomNameToJoin = SceneManager.GetActiveScene().name + "-" + _roomName;
     }
 
     private void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject); 
+            return;
+        }
     }
-
 
     IEnumerator Start()
     {
-        // Precautions
-        if (PhotonNetwork.InRoom)
+        if (!PhotonNetwork.IsConnected)
         {
-            PhotonNetwork.LeaveRoom();
-            PhotonNetwork.Disconnect();
+            PhotonNetwork.ConnectUsingSettings();
+            yield return new WaitUntil(() => PhotonNetwork.IsConnectedAndReady);
+            PhotonNetwork.JoinLobby();
         }
-
-        yield return new WaitUntil(() => !PhotonNetwork.IsConnected);
-
-
-        PhotonNetwork.ConnectUsingSettings();
+        else if (!PhotonNetwork.InLobby)
+        {
+            PhotonNetwork.JoinLobby();
+        }
     }
-
 
     public override void OnConnectedToMaster()
     {
         base.OnConnectedToMaster();
-
         PhotonNetwork.JoinLobby();
+    }
+
+    public override void OnJoinedLobby()
+    {
+        base.OnJoinedLobby();
+        cachedRoomList.Clear(); 
     }
 
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
-        if (cachedRoomList.Count <= 0)
+        cachedRoomList.Clear();
+        foreach (var room in roomList)
         {
-            cachedRoomList = roomList;
-        } else
-        {
-            foreach (var room in roomList)
+            if (!room.RemovedFromList && room.Name.Contains(SceneManager.GetActiveScene().name))
             {
-                for (int i = 0; i < cachedRoomList.Count; i++)
-                {
-                    if (cachedRoomList[i].Name == room.Name)
-                    {
-                        List<RoomInfo> newList = cachedRoomList;
-
-
-                        if (room.RemovedFromList)
-                        {
-                            newList.Remove(newList[i]);
-                        } else
-                        {
-                            newList[i] = room;
-                        }
-
-                        cachedRoomList = newList;
-                    }
-                }
+                cachedRoomList.Add(room); // Filtre par scène
             }
         }
 
         UpdateUI();
-
     }
-
 
     void UpdateUI()
     {
@@ -98,16 +85,14 @@ public class RoomList : MonoBehaviourPunCallbacks
 
         foreach (var room in cachedRoomList)
         {
+            string[] splitted = room.Name.Split("-");
+            if (splitted[0] != SceneManager.GetActiveScene().name) continue;
             GameObject roomItem = Instantiate(roomListItemPrefab, roomListParent);
-
-            roomItem.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = room.Name;
-            roomItem.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = room.PlayerCount + "/16";
-
-
+            roomItem.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = splitted[1]; // Nom de la room
+            roomItem.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = $"{room.PlayerCount}/20"; // Nombre de joueurs
             roomItem.GetComponent<RoomItemButton>().RoomName = room.Name;
         }
     }
-
 
     public void JoinRoomByName(string _name)
     {
@@ -116,4 +101,14 @@ public class RoomList : MonoBehaviourPunCallbacks
         gameObject.SetActive(false);
     }
 
+    public override void OnLeftRoom()
+    {
+        base.OnLeftRoom();
+        PhotonNetwork.JoinLobby();
+    }
+
+    public override void OnDisconnected(DisconnectCause cause)
+    {
+        Debug.LogError($"Disconnected from Photon! Reason: {cause}");
+    }
 }
