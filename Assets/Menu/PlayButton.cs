@@ -23,6 +23,11 @@ public class PlayButton : MonoBehaviour
     {
         Gamemode.enabled = true;
         Main.enabled = false;
-
     }
+
+    public void ChangeSkin()
+    {
+        SceneManager.LoadScene("SkinSelection");
+    }
+
 }

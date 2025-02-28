@@ -3904,7 +3904,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f733296c4d4a5240b824a87ec8f69c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 3812056685087570079, guid: 905aab9e7d273eb46ae25d0af1080e35, type: 3}
+  playerObjects:
+  - {fileID: 3812056685087570079, guid: 6deda065f2ed8ce4991d15f261d5048c, type: 3}
+  - {fileID: 3812056685087570079, guid: 905aab9e7d273eb46ae25d0af1080e35, type: 3}
   spawnPoint: {fileID: 249965673}
   roomCam: {fileID: 374423421}
   nameUI: {fileID: 1301770989}
