@@ -5,10 +5,10 @@ using TMPro;
 public class SettingsMenu : MonoBehaviour
 {
 
-    public AudioMixer audioMixer;
     public TextMeshProUGUI FOVtext;
     public TextMeshProUGUI Sensitext;
     public Canvas Settings;
+    public AudioSource music;
 
     private void Start()
     {
@@ -48,6 +48,11 @@ public class SettingsMenu : MonoBehaviour
     {
         PlayerPrefs.SetFloat("Sensitivity", sensibility);
         Sensitext.text = sensibility.ToString("F1");
+    }
+
+    public void VolumeChanger(float volume)
+    {
+        music.volume = volume;
     }
 
     public void ExitSettingsMenu()

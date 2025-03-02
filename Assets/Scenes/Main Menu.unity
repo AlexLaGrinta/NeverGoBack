@@ -607,10 +607,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 483075a11a57dd4a4874a893334acb64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioMixer: {fileID: 0}
   FOVtext: {fileID: 0}
   Sensitext: {fileID: 0}
   Settings: {fileID: 1259300149}
+  music: {fileID: 0}
 --- !u!1 &187749331
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,7 +621,6 @@ GameObject:
   m_Component:
   - component: {fileID: 187749332}
   - component: {fileID: 187749334}
-  - component: {fileID: 187749333}
   m_Layer: 5
   m_Name: Music Volume
   m_TagString: Untagged
@@ -651,22 +650,6 @@ RectTransform:
   m_AnchoredPosition: {x: 505, y: 311}
   m_SizeDelta: {x: 363.5, y: 73.8}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &187749333
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 187749331}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 483075a11a57dd4a4874a893334acb64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioMixer: {fileID: 24100000, guid: 02a7cd41dfb53541db50ba6d27236237, type: 2}
-  FOVtext: {fileID: 1862737650}
-  Sensitext: {fileID: 1366815922}
-  Settings: {fileID: 1259300149}
 --- !u!114 &187749334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -714,13 +697,13 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1259300150}
         m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: VolumeChanger
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -729,7 +712,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 0
+        m_CallState: 2
 --- !u!1 &203844586
 GameObject:
   m_ObjectHideFlags: 0
@@ -1267,7 +1250,6 @@ GameObject:
   - component: {fileID: 382566694}
   - component: {fileID: 382566693}
   - component: {fileID: 382566692}
-  - component: {fileID: 382566695}
   m_Layer: 5
   m_Name: ExitSettings
   m_TagString: Untagged
@@ -1338,7 +1320,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 382566695}
+      - m_Target: {fileID: 1259300150}
         m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
         m_MethodName: ExitSettingsMenu
         m_Mode: 1
@@ -1388,22 +1370,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 382566689}
   m_CullTransparentMesh: 1
---- !u!114 &382566695
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 382566689}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 483075a11a57dd4a4874a893334acb64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioMixer: {fileID: 0}
-  FOVtext: {fileID: 0}
-  Sensitext: {fileID: 0}
-  Settings: {fileID: 1259300149}
 --- !u!1 &426760599
 GameObject:
   m_ObjectHideFlags: 0
@@ -2206,7 +2172,6 @@ GameObject:
   m_Component:
   - component: {fileID: 649709484}
   - component: {fileID: 649709486}
-  - component: {fileID: 649709485}
   m_Layer: 5
   m_Name: Sensi Slider
   m_TagString: Untagged
@@ -2237,22 +2202,6 @@ RectTransform:
   m_AnchoredPosition: {x: 505, y: -105}
   m_SizeDelta: {x: 363.5, y: 73.8}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &649709485
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 649709483}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 483075a11a57dd4a4874a893334acb64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioMixer: {fileID: 24100000, guid: 02a7cd41dfb53541db50ba6d27236237, type: 2}
-  FOVtext: {fileID: 1862737650}
-  Sensitext: {fileID: 1366815922}
-  Settings: {fileID: 1259300149}
 --- !u!114 &649709486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2304,7 +2253,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 649709485}
+      - m_Target: {fileID: 1259300150}
         m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
         m_MethodName: SensiChanger
         m_Mode: 0
@@ -2769,7 +2718,7 @@ RectTransform:
   m_Father: {fileID: 960214673}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2900,14 +2849,13 @@ GameObject:
   m_Component:
   - component: {fileID: 776333925}
   - component: {fileID: 776333927}
-  - component: {fileID: 776333926}
   m_Layer: 5
   m_Name: General Volume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &776333925
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2930,22 +2878,6 @@ RectTransform:
   m_AnchoredPosition: {x: 505, y: 422}
   m_SizeDelta: {x: 363.5, y: 73.8}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &776333926
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 776333924}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 483075a11a57dd4a4874a893334acb64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioMixer: {fileID: 24100000, guid: 02a7cd41dfb53541db50ba6d27236237, type: 2}
-  FOVtext: {fileID: 1862737650}
-  Sensitext: {fileID: 1366815922}
-  Settings: {fileID: 1259300149}
 --- !u!114 &776333927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2997,9 +2929,9 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 776333926}
+      - m_Target: {fileID: 1259300145}
         m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
-        m_MethodName: GeneralVolume
+        m_MethodName: 
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3337,7 +3269,7 @@ RectTransform:
   m_Father: {fileID: 1345980363}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4414,6 +4346,7 @@ GameObject:
   - component: {fileID: 1259300149}
   - component: {fileID: 1259300148}
   - component: {fileID: 1259300147}
+  - component: {fileID: 1259300150}
   m_Layer: 5
   m_Name: Settings
   m_TagString: Untagged
@@ -4514,6 +4447,22 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1259300150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1259300145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 483075a11a57dd4a4874a893334acb64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FOVtext: {fileID: 1862737650}
+  Sensitext: {fileID: 1366815922}
+  Settings: {fileID: 1259300149}
+  music: {fileID: 321965584}
 --- !u!1 &1264751921
 GameObject:
   m_ObjectHideFlags: 0
@@ -5439,7 +5388,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1485466288
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6412,7 +6361,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1819493086}
   - component: {fileID: 1819493088}
-  - component: {fileID: 1819493087}
   m_Layer: 5
   m_Name: FOV Slider
   m_TagString: Untagged
@@ -6443,22 +6391,6 @@ RectTransform:
   m_AnchoredPosition: {x: 505, y: -1}
   m_SizeDelta: {x: 363.5, y: 73.8}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1819493087
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1819493085}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 483075a11a57dd4a4874a893334acb64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioMixer: {fileID: 24100000, guid: 02a7cd41dfb53541db50ba6d27236237, type: 2}
-  FOVtext: {fileID: 1862737650}
-  Sensitext: {fileID: 1366815922}
-  Settings: {fileID: 1259300149}
 --- !u!114 &1819493088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6510,7 +6442,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1819493087}
+      - m_Target: {fileID: 1259300150}
         m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
         m_MethodName: FOVChanger
         m_Mode: 0

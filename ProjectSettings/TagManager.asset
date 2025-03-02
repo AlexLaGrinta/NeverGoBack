@@ -8,6 +8,8 @@ TagManager:
   - Platform
   - EjectPlatform
   - Kill
+  - Spectateur
+  - Final
   layers:
   - Default
   - TransparentFX

@@ -45,6 +45,16 @@ MonoBehaviour:
   - SetNickname
   - MakePlatformDisappear
   - MakePlatformReappear
+  - AddPlayerRank
+  - SetVisibility
+  - NotifyPlayerBecameSpectator
+  - AddPlayerToRanking
+  - AddToRanking
+  - NotifySpectatorStatus
+  - AddToRankings
+  - OnPlayerBecameSpectator
+  - SyncRanking
+  - SyncRankingForAllPlayers
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
