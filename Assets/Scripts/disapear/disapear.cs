@@ -27,6 +27,9 @@ public class BoxDisabler : MonoBehaviourPunCallbacks
 
     public SkillBasedMapGenerator generator = null;
 
+
+    public AudioSource tickStart;
+
     public override void OnJoinedRoom()
     {
         // Attendre que le PlayerObject soit instanci�
@@ -127,8 +130,11 @@ public class BoxDisabler : MonoBehaviourPunCallbacks
         {
             if (countdownText != null)
             {
-                countdownText.text = $"Début dans {Mathf.Ceil(timeLeft)}s";
+                countdownText.text = $"Game starts in {Mathf.Ceil(timeLeft)}s";
             }
+
+            if (timeLeft == 4) tickStart.Play();
+
             yield return new WaitForSeconds(1f);
             timeLeft--;
         }
