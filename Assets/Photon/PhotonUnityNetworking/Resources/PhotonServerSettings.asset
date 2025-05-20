@@ -55,6 +55,15 @@ MonoBehaviour:
   - OnPlayerBecameSpectator
   - SyncRanking
   - SyncRankingForAllPlayers
+  - EndGame
+  - DisableBox
+  - StartCountdown
+  - ActualizePlayers
+  - DesactivateCanvas
+  - PlaceAllPlat
+  - ShowFinal
+  - ActivateLava
+  - PlaceTheMaze
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

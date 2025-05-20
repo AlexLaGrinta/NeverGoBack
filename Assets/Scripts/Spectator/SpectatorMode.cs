@@ -3,6 +3,15 @@ using Photon.Pun;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using UnityEngine.SceneManagement;
+
+
+public enum SpectateMap
+{
+    Montagne,
+    HellTower
+}
+
 
 public class SpectatorMode : MonoBehaviourPun
 {
@@ -10,6 +19,12 @@ public class SpectatorMode : MonoBehaviourPun
     [SerializeField] private Camera playerCamera; // Caméra du joueur local
     [SerializeField] private Camera ownSpectatorCam; // Caméra propre au joueur local pour spectateur
     [SerializeField] private TextMeshProUGUI Ranking; // Pour afficher les classements
+
+    [SerializeField] private Canvas EndScreen;
+    [SerializeField] private TextMeshProUGUI FinalRanking;
+
+
+    private SpectateMap Map;
 
     private List<GameObject> players; // Liste des joueurs observables
     private int currentPlayerIndex = 0; // Index du joueur actuellement observé
@@ -22,6 +37,17 @@ public class SpectatorMode : MonoBehaviourPun
 
     void Start()
     {
+
+        string sceneName = SceneManager.GetActiveScene().name;
+
+        if (sceneName == "MapScene")
+        {
+            Map = SpectateMap.Montagne;
+        } else if (sceneName == "OnlyUp")
+        {
+            Map = SpectateMap.HellTower;
+        }
+
         if (photonView.IsMine)
         {
             nickname = gameObject.GetComponent<PlayerSetup>().nickname;
@@ -53,6 +79,17 @@ public class SpectatorMode : MonoBehaviourPun
         {
             if (collided) return;
             photonView.RPC("AddPlayerRank", RpcTarget.AllBuffered, nickname);
+            ActivateSpectatorMode();
+            collided = true;
+        }
+    }
+
+    public void MazeFinal(Collider other)
+    {
+        if (!_isSpectatorModeActive)
+        {
+            if (collided) return;
+            //photonView.RPC("AddPlayerRank", RpcTarget.AllBuffered, nickname);
             ActivateSpectatorMode();
             collided = true;
         }
@@ -102,6 +139,8 @@ public class SpectatorMode : MonoBehaviourPun
     [PunRPC]
     private void SyncRankingForAllPlayers(string rankingText)
     {
+        if (Map == SpectateMap.HellTower) return;
+
         // Trouve tous les objets avec le tag "Player"
         GameObject[] allPlayers = GameObject.FindGameObjectsWithTag("Player");
 
@@ -192,6 +231,50 @@ public class SpectatorMode : MonoBehaviourPun
 
 
 
+    [PunRPC]
+    private void EndGame()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        FinalRanking.text = Ranking.text;
+        EndScreen.gameObject.SetActive(true);
+
+        GameObject[] allPlayers = GameObject.FindGameObjectsWithTag("Player");
+
+        foreach (var player in allPlayers)
+        {
+
+            Transform cameraTransform = player.transform.Find("Camera");
+
+            if (cameraTransform != null)
+            {
+                Transform EndScreenTransform = cameraTransform.Find("EndScreen");
+                EndScreenTransform.parent.gameObject.SetActive(true);
+
+                if (Map != SpectateMap.HellTower)
+                {
+
+                    if (EndScreenTransform != null)
+                    {
+                        TextMeshProUGUI finishersText = EndScreenTransform.Find("ranking")?.GetComponent<TextMeshProUGUI>();
+
+                        if (finishersText != null)
+                        {
+                            finishersText.text = Ranking.text;
+                        }
+                    }
+                }
+            }
+        }
+
+        GameObject[] canvas = GameObject.FindGameObjectsWithTag("CanvaCount");
+        foreach (var canva in canvas)
+        {
+            canva.gameObject.SetActive(false);
+        }
+
+
+    }
 
 
 
@@ -199,7 +282,24 @@ public class SpectatorMode : MonoBehaviourPun
     {
         if (!photonView.IsMine) return;
 
+
         Debug.Log("[ActivateSpectatorMode] Activation du mode spectateur...");
+
+        UpdatePlayerList();
+
+        if (players.Count == 0)
+        {
+            Debug.LogWarning("[ActivateSpectatorMode] MDRRRRRRRRR");
+            photonView.RPC("EndGame", RpcTarget.AllBuffered); // Rendre invisible pour tout le monde
+
+            //EndGame();
+            return;
+        }
+
+
+        kill playertp = gameObject.GetComponent<kill>();
+        playertp.Teleport(new Vector3(100,100,100));
+        photonView.RPC("SyncTeleport", RpcTarget.AllBuffered, new Vector3(100,100,100));
 
         if (playerCamera != null) playerCamera.enabled = false;
         if (ownSpectatorCam != null) ownSpectatorCam.enabled = false;
@@ -211,7 +311,7 @@ public class SpectatorMode : MonoBehaviourPun
         if (players.Count == 0)
         {
             Debug.LogWarning("[ActivateSpectatorMode] Aucun joueur disponible pour spectateur.");
-            DisableSpectatorMode();
+            //DisableSpectatorMode();
             return;
         }
 
@@ -224,6 +324,7 @@ public class SpectatorMode : MonoBehaviourPun
 
     private void DisableSpectatorMode()
     {
+        return;
         Debug.Log("[DisableSpectatorMode] Désactivation du mode spectateur...");
 
         if (playerCamera != null) playerCamera.enabled = true;
@@ -246,6 +347,7 @@ public class SpectatorMode : MonoBehaviourPun
 
             if (players.Count == 0)
             {
+                photonView.RPC("EndGame", RpcTarget.AllBuffered);
                 Debug.LogWarning("[WorkerCoroutine] Aucun joueur à observer. Fin du mode spectateur.");
                 DisableSpectatorMode();
                 yield break;

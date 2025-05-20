@@ -363,10 +363,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 483075a11a57dd4a4874a893334acb64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioMixer: {fileID: 24100000, guid: 02a7cd41dfb53541db50ba6d27236237, type: 2}
   FOVtext: {fileID: 5915851065105093070}
   Sensitext: {fileID: 7850481155795603532}
   Settings: {fileID: 0}
+  music: {fileID: 0}
 --- !u!1 &323301532328456946
 GameObject:
   m_ObjectHideFlags: 0
@@ -2187,6 +2187,7 @@ MonoBehaviour:
   jumpHeight: 1.5
   gravityValue: -9.81
   friction: 5
+  groundCheckDistance: 0.2
 --- !u!143 &8993524071258739602
 CharacterController:
   m_ObjectHideFlags: 0
@@ -3561,10 +3562,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 483075a11a57dd4a4874a893334acb64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioMixer: {fileID: 24100000, guid: 02a7cd41dfb53541db50ba6d27236237, type: 2}
   FOVtext: {fileID: 5915851065105093070}
   Sensitext: {fileID: 0}
   Settings: {fileID: 0}
+  music: {fileID: 0}
 --- !u!1 &5698058555109154041
 GameObject:
   m_ObjectHideFlags: 0
@@ -4531,10 +4532,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 483075a11a57dd4a4874a893334acb64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioMixer: {fileID: 24100000, guid: 02a7cd41dfb53541db50ba6d27236237, type: 2}
   FOVtext: {fileID: 5915851065105093070}
   Sensitext: {fileID: 7850481155795603532}
   Settings: {fileID: 0}
+  music: {fileID: 0}
 --- !u!1 &7136600930405255152
 GameObject:
   m_ObjectHideFlags: 0
@@ -4961,10 +4962,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 483075a11a57dd4a4874a893334acb64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioMixer: {fileID: 24100000, guid: 02a7cd41dfb53541db50ba6d27236237, type: 2}
   FOVtext: {fileID: 5915851065105093070}
   Sensitext: {fileID: 7850481155795603532}
   Settings: {fileID: 0}
+  music: {fileID: 0}
 --- !u!1 &7522204102555942096
 GameObject:
   m_ObjectHideFlags: 0
@@ -5326,10 +5327,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 483075a11a57dd4a4874a893334acb64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioMixer: {fileID: 0}
   FOVtext: {fileID: 0}
   Sensitext: {fileID: 0}
   Settings: {fileID: 4651867876951776784}
+  music: {fileID: 0}
 --- !u!1 &8258508339544783999
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,11 +10,14 @@ public class SettingsMenu : MonoBehaviour
     public Canvas Settings;
     public AudioSource music;
 
+    public AudioMixer mixer;
+
     private void Start()
     {
         Settings.enabled = false;
         PlayerPrefs.SetFloat("FOV", 80.0f);
         PlayerPrefs.SetFloat("Sensitivity", 1.0f);
+        PlayerPrefs.SetFloat("MasterVolume", 1.0f);
     }
 
     public void GeneralVolume(float volume)
@@ -54,6 +57,13 @@ public class SettingsMenu : MonoBehaviour
     {
         music.volume = volume;
     }
+
+    public void MasterVolumeChanger(float volume)
+    {
+        float dB = Mathf.Log10(Mathf.Clamp(volume, 0.0001f, 1f)) * 20;
+        bool found = mixer.SetFloat("VolumeMDR", dB);
+    }
+
 
     public void ExitSettingsMenu()
     {

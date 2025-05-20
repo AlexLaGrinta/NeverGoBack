@@ -10,6 +10,9 @@ TagManager:
   - Kill
   - Spectateur
   - Final
+  - CanvaCount
+  - CountPlayer
+  - Cup
   layers:
   - Default
   - TransparentFX
@@ -17,7 +20,7 @@ TagManager:
   - PlayerBody
   - Water
   - UI
-  - 
+  - IA
   - 
   - 
   - 

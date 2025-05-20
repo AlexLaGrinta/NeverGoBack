@@ -37,7 +37,7 @@ public class kill : MonoBehaviourPun
         }
     }
 
-    private void Teleport(Vector3 newPosition)
+    public void Teleport(Vector3 newPosition)
     {
         controller.enabled = false;
         transform.position = newPosition; 
@@ -48,7 +48,7 @@ public class kill : MonoBehaviourPun
 
 
     [PunRPC]
-    private void SyncTeleport(Vector3 newPosition)
+    public void SyncTeleport(Vector3 newPosition)
     {
         if (!photonView.IsMine)
         {
@@ -59,4 +59,6 @@ public class kill : MonoBehaviourPun
 
         Debug.Log($"Player téléporté via réseau à la position ({newPosition}).");
     }
+
+
 }

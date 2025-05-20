@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
     private CharacterController controller;
     private Vector3 playerVelocity;
     private bool groundedPlayer;
-    private InputManager inputManager;  // RÈfÈrence unique ‡ InputManager
+    private InputManager inputManager;  // R√©f√©rence unique √† InputManager
     private Transform cameraTransform;
 
     private Animator anim;
@@ -20,9 +20,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float gravityValue = -9.81f;
     [SerializeField]
-    private float friction = 5.0f; // Friction (dÈcÈlÈration) pour ralentir le joueur
+    private float friction = 5.0f; // Friction (d√©c√©l√©ration) pour ralentir le joueur
+    [SerializeField]
+    private float groundCheckDistance = 0.2f; // Distance de v√©rification du sol
 
-    private Vector3 velocity; // Utiliser velocity pour gÈrer la vitesse du joueur
+    private Vector3 velocity; // Utiliser velocity pour g√©rer la vitesse du joueur
 
     private bool isJumping;
 
@@ -30,30 +32,39 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         controller = GetComponent<CharacterController>();
-        inputManager = InputManager.Instance; // RÈcupËre l'instance du InputManager dÈj‡ existante
+        inputManager = InputManager.Instance; // R√©cup√®re l'instance du InputManager d√©j√† existante
         cameraTransform = Camera.main.transform;
         anim = GetComponentInChildren<Animator>();
     }
 
     void Update()
     {
-
+        // Am√©lioration de la d√©tection du sol avec un raycast
         groundedPlayer = controller.isGrounded;
+        if (!groundedPlayer)
+        {
+            // Double v√©rification avec un raycast
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, Vector3.down, out hit, groundCheckDistance))
+            {
+                groundedPlayer = true;
+            }
+        }
 
-        // RÈinitialise la vitesse verticale si on est au sol
+        // R√©initialise la vitesse verticale si on est au sol
         if (groundedPlayer && playerVelocity.y < 0)
         {
             playerVelocity.y = 0f;
         }
 
-        // RÈcupËre les entrÈes de mouvement (horizontal et vertical)
-        Vector2 movement = inputManager.GetPlayerMovement(); // RÈcupËre la rÈfÈrence sans la rÈinstancier
-        Vector3 move = new Vector3(movement.x, 0f, movement.y); // CrÈation d'un vecteur 3D
+        // R√©cup√®re les entr√©es de mouvement (horizontal et vertical)
+        Vector2 movement = inputManager.GetPlayerMovement(); // R√©cup√®re la r√©f√©rence sans la r√©instancier
+        Vector3 move = new Vector3(movement.x, 0f, movement.y); // Cr√©ation d'un vecteur 3D
 
-        // Applique l'orientation de la camÈra au mouvement
+        // Applique l'orientation de la cam√©ra au mouvement
         move = cameraTransform.forward * move.z + cameraTransform.right * move.x;
 
-        // Normalisation pour Èviter une vitesse plus rapide en diagonale
+        // Normalisation pour √©viter une vitesse plus rapide en diagonale
         move.y = 0f;
         move = move.normalized;
 
@@ -76,11 +87,11 @@ public class PlayerController : MonoBehaviour
         {
             if (move.magnitude > 0)
             {
-                velocity = Vector3.Lerp(velocity, move * playerSpeed, Time.deltaTime * friction); // DÈcÈlÈration
+                velocity = Vector3.Lerp(velocity, move * playerSpeed, Time.deltaTime * friction); // D√©c√©l√©ration
             }
             else
             {
-                velocity = Vector3.Lerp(velocity, Vector3.zero, Time.deltaTime * friction); // DÈcÈlÈration ‡ zÈro
+                velocity = Vector3.Lerp(velocity, Vector3.zero, Time.deltaTime * friction); // D√©c√©l√©ration √† z√©ro
             }
         }
         else
@@ -93,7 +104,7 @@ public class PlayerController : MonoBehaviour
         // Applique le mouvement horizontal
         controller.Move(velocity * Time.deltaTime);
 
-        // GËre le saut
+        // G√©re le saut
         if (inputManager.PlayerJumpedThisFrame() && groundedPlayer)
         {
             anim.SetBool("isJumping", true);
@@ -117,10 +128,10 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        // Applique la gravitÈ pour le mouvement vertical
+        // Applique la gravit√© pour le mouvement vertical
         playerVelocity.y += gravityValue * Time.deltaTime;
 
-        // Applique la gravitÈ
+        // Applique la gravit√©
         controller.Move(playerVelocity * Time.deltaTime);
     }
 }
