@@ -2,7 +2,7 @@ using Photon.Pun;
 using UnityEngine;
 using TMPro;
 using System.Collections;
-
+using UnityEngine.Playables;
 
 public enum Map
 {
@@ -30,6 +30,18 @@ public class BoxDisabler : MonoBehaviourPunCallbacks
 
     public AudioSource tickStart;
 
+
+    // Cinématiques
+    [SerializeField]
+    private PlayableDirector playableMontagne = null;
+
+    [SerializeField]
+    private PlayableDirector playableHellTower = null;
+
+    [SerializeField]
+    private GameObject CinematicCamera;
+
+
     public override void OnJoinedRoom()
     {
         // Attendre que le PlayerObject soit instanci�
@@ -43,6 +55,18 @@ public class BoxDisabler : MonoBehaviourPunCallbacks
     {
         if (gameStarted) return;
         gameStarted = true;
+
+        CinematicCamera.SetActive(true);
+
+        if (map == Map.Montagne)
+        {
+            playableMontagne.Play();
+        } else if (map == Map.HellTower)
+        {
+            generator.SendPlatToAll();
+            playableHellTower.Play();
+        }
+
 
         if (playerCanvas != null)
         {
@@ -161,8 +185,9 @@ public class BoxDisabler : MonoBehaviourPunCallbacks
         {
             playerCanvas.SetActive(false);
         }
+        CinematicCamera.SetActive(false);
+
         photonView.RPC("DesactivateCanvas", RpcTarget.AllBuffered);
-        generator.SendPlatToAll();
     }
 
 
@@ -179,6 +204,7 @@ public class BoxDisabler : MonoBehaviourPunCallbacks
         {
             playerCanvas.SetActive(false);
         }
+        CinematicCamera.SetActive(false);
         photonView.RPC("DesactivateCanvas", RpcTarget.AllBuffered);
     }
 }

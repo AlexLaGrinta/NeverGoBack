@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     private InputManager inputManager;  // Référence unique à InputManager
     private Transform cameraTransform;
 
+    [SerializeField]
     private Animator anim;
 
     [SerializeField]
@@ -34,7 +35,8 @@ public class PlayerController : MonoBehaviour
         controller = GetComponent<CharacterController>();
         inputManager = InputManager.Instance; // Récupère l'instance du InputManager déjà existante
         cameraTransform = Camera.main.transform;
-        anim = GetComponentInChildren<Animator>();
+        if (anim == null)
+            anim = GetComponentInChildren<Animator>();
     }
 
     void Update()

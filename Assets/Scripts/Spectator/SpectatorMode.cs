@@ -75,7 +75,7 @@ public class SpectatorMode : MonoBehaviourPun
     {
         
         // Empêcher un joueur déjà spectateur de redevenir spectateur
-        if (other.CompareTag("Final") && !_isSpectatorModeActive)
+        if (other.CompareTag("Spectateur") && !_isSpectatorModeActive)
         {
             if (collided) return;
             photonView.RPC("AddPlayerRank", RpcTarget.AllBuffered, nickname);

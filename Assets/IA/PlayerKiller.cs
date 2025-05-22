@@ -3,6 +3,10 @@ using Photon.Pun;
 
 public class PlayerKiller : MonoBehaviour
 {
+
+    public AudioSource audioKiler;
+
+
     private void OnTriggerEnter(Collider other)
     {
 
@@ -13,6 +17,7 @@ public class PlayerKiller : MonoBehaviour
             SpectatorMode specComp = playerPhotonView.gameObject.GetComponent<SpectatorMode>();
             if (specComp != null)
             {
+                audioKiler.Stop();
                 specComp.MazeFinal(other);
             }
         }

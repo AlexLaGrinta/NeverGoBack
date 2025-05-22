@@ -11,6 +11,11 @@ public class StartMaze : MonoBehaviour
 
     public Canvas videoCanva;
 
+    public AudioSource killerAudio;
+
+    public GameObject DirectLight;
+
+
     private bool hasPlayed = false;
 
 
@@ -54,6 +59,8 @@ public class StartMaze : MonoBehaviour
         kill playertp = playerPhotonView.gameObject.GetComponent<kill>();
         if (playertp != null)
         {
+            killerAudio.Play();
+            DirectLight.SetActive(false);
             playertp.Teleport(teleportDestination.position);
             playerPhotonView.RPC("SyncTeleport", RpcTarget.Others, teleportDestination.position);
         }

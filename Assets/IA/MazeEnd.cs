@@ -11,6 +11,10 @@ public class MazeEnd : MonoBehaviour
     public GameObject lava;
 
 
+    public AudioSource killerAudio;
+
+    public GameObject DirectLight;
+
 
 
     private Vector3 FindGoodPlat()
@@ -45,6 +49,9 @@ public class MazeEnd : MonoBehaviour
             {
 
                 Vector3 newpos = FindGoodPlat();
+                newpos.y += 1f;
+                killerAudio.Stop();
+                DirectLight.SetActive(true);
                 playertp.Teleport(newpos);
                 playerPhotonView.RPC("SyncTeleport", RpcTarget.Others, newpos);
             }
