@@ -76,7 +76,7 @@ public class SettingsMenu : MonoBehaviour
 
     void UpdateWindowedButtonText()
     {
-        windowedButtonText.text = isFullScreen ? "Plein écran" : "Fenêtré";
+        windowedButtonText.text = isFullScreen ? "Full Screen" : "Windowed";
     }
 
 

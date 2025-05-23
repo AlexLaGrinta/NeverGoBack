@@ -3574,7 +3574,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b742fa95174a5a649865de840801cae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredPlayers: 2
+  requiredPlayers: 4
   countdownTime: 15
   boxSpawn: {fileID: 1422806832}
   map: 0

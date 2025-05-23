@@ -51,7 +51,7 @@ public class MazeEnd : MonoBehaviour
                 Vector3 newpos = FindGoodPlat();
                 newpos.y += 1f;
                 killerAudio.Stop();
-                DirectLight.SetActive(true);
+                //DirectLight.SetActive(true);
                 playertp.Teleport(newpos);
                 playerPhotonView.RPC("SyncTeleport", RpcTarget.Others, newpos);
             }
