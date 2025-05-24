@@ -927,10 +927,8 @@ MonoBehaviour:
   layers:
   - layer: {fileID: 1776433196}
     strength: 20
-    basePos: {x: 0, y: 0}
   - layer: {fileID: 292115123}
     strength: 2
-    basePos: {x: 0, y: 0}
 --- !u!1 &243771926
 GameObject:
   m_ObjectHideFlags: 0
@@ -4380,6 +4378,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb516a32726bf7446b2d4d0335686f61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvasGroup: {fileID: 0}
+  fadeDuration: 1
 --- !u!225 &981810227
 CanvasGroup:
   m_ObjectHideFlags: 0

@@ -4,7 +4,7 @@ using Photon.Pun;
 public class PlayerKiller : MonoBehaviour
 {
 
-    public AudioSource audioKiler;
+    [SerializeField] private AudioSource audioKiler;
 
 
     private void OnTriggerEnter(Collider other)

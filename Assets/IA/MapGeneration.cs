@@ -6,30 +6,25 @@ using TMPro;
 
 public class SkillBasedMapGenerator : MonoBehaviourPunCallbacks
 {
-    public GameObject platformPrefab;
+    [SerializeField] private GameObject platformPrefab;
     private int platformCount = 80;
 
 
-    //public GameObject cup;
 
 
+    private float baseHorizontalRange = 5f;
+    private float baseDepthRange = 5f;
+    private float minSpacing = 2f;
+    private float maxSpacing = 7f;
+    private float verticalSpacing = 1f;
 
-    // Variables clés de difficulté :
-    [Header("Paramètres de difficulté")]
-    public float baseHorizontalRange = 5f;
-    public float baseDepthRange = 5f;
-    public float minSpacing = 2f;
-    public float maxSpacing = 7f;
-    public float verticalSpacing = 1f;
+    private float skillLevel = 1f; 
 
-    public float skillLevel = 1f; // Dynamique
-
-    // Limites
-    public float minX = 465.72f;
-    public float maxX = 493.141f;
-    public float fixedMinY = 16.437f;
-    public float minZ = 406.84f;
-    public float maxZ = 435.109f;
+    private float minX = 465.72f;
+    private float maxX = 493.141f;
+    private float fixedMinY = 16.437f;
+    private float minZ = 406.84f;
+    private float maxZ = 435.109f;
 
     private Vector3 lastPosition = Vector3.zero;
     private List<(int, int)> cubesCoord = new List<(int, int)>();
@@ -38,14 +33,6 @@ public class SkillBasedMapGenerator : MonoBehaviourPunCallbacks
 
 
     private Vector3[] pos;
-
-    void Start()
-    {
-        //if (PhotonNetwork.IsMasterClient)
-        //{
-        //    GeneratePlatforms();
-        //}
-    }
 
     public Vector3[] PosGetter()
     {
@@ -119,7 +106,6 @@ public class SkillBasedMapGenerator : MonoBehaviourPunCallbacks
 
             float newX = lastPosition.x;
             float newZ = lastPosition.z;
-            // Génération avec adaptation dynamique :
             do
             {
                 newX = lastPosition.x + Random.Range(-horizontalRange, horizontalRange);
@@ -142,7 +128,6 @@ public class SkillBasedMapGenerator : MonoBehaviourPunCallbacks
             cubesCoord.Add(((int)newPosition.x,(int)newPosition.z));
             lastPosition = newPosition;
 
-            // Progression douce qui peut être modifiée par l'IA
             skillLevel = Mathf.Clamp(skillLevel + 0.05f, 1f, 10f);
         }
     }

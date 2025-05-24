@@ -6,10 +6,22 @@ public class ParallaxLayers : MonoBehaviour
     [System.Serializable]
     public class ParallaxLayer
     {
-        public RectTransform layer;        // Le layer UI à bouger
-        public float strength = 10f;       // Force du déplacement pour cette couche
+        [SerializeField] private RectTransform layer;    // Le layer UI à bouger
+        [SerializeField] private float strength = 10f;      // Force du déplacement pour cette couche
         [HideInInspector]
-        public Vector2 basePos;            // Position de départ
+        public Vector2 basePos { get; set; }      // Position de départ
+
+        public RectTransform layerGet()
+        {
+            return layer;
+        }
+
+        public float strengthGetter()
+        {
+            return strength;
+        }
+
+
     }
 
     public ParallaxLayer[] layers;
@@ -17,7 +29,7 @@ public class ParallaxLayers : MonoBehaviour
     void Start()
     {
         foreach (var l in layers)
-            l.basePos = l.layer.anchoredPosition;
+            l.basePos = l.layerGet().anchoredPosition;
     }
 
     void Update()
@@ -28,7 +40,7 @@ public class ParallaxLayers : MonoBehaviour
 
         foreach (var l in layers)
         {
-            l.layer.anchoredPosition = l.basePos + new Vector2(x, y) * l.strength;
+            l.layerGet().anchoredPosition = l.basePos + new Vector2(x, y) * l.strengthGetter();
         }
     }
 }

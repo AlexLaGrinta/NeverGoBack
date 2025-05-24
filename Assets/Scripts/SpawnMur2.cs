@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 public class RandomWallSpawner : MonoBehaviour
 {
-    public List<GameObject> wallPrefabs;
-    public Transform spawnPoint;
-    public float delay = 2f; // secondes entre chaque apparition de mur
+    [SerializeField] private List<GameObject> wallPrefabs;
+    [SerializeField] private Transform spawnPoint;
+    [SerializeField] private float delay = 2f; // secondes entre chaque apparition de mur
 
     private Coroutine spawnCoroutine;
 

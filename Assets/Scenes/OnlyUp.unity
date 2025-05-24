@@ -1165,17 +1165,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   platformPrefab: {fileID: 8235837897971461955, guid: 881b4a4d7a5323d4cacae93e6e87faea, type: 3}
-  baseHorizontalRange: 5
-  baseDepthRange: 5
-  minSpacing: 2
-  maxSpacing: 7
-  verticalSpacing: 1
-  skillLevel: 1
-  minX: 465.72
-  maxX: 493.141
-  fixedMinY: 16.437
-  minZ: 406.84
-  maxZ: 435.109
 --- !u!4 &560140416
 Transform:
   m_ObjectHideFlags: 0
@@ -1651,7 +1640,6 @@ MonoBehaviour:
   generator: {fileID: 560140415}
   lava: {fileID: 403160087}
   killerAudio: {fileID: 941240019}
-  DirectLight: {fileID: 4076175803628139047}
 --- !u!114 &682556866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3097,14 +3085,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40e9b5af7b7834b4da908d382ed5879f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 20
-  height: 20
-  scale: 6
   Cube: {fileID: 8818659262892139094, guid: b1daf0d0dfa56d449973941c0d6eea72, type: 3}
-  bannedCubes:
-  - {x: 6, y: 0, z: 6}
-  - {x: 12, y: 0, z: 6}
-  - {x: 6, y: 0, z: 12}
 --- !u!114 &1014497207
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -86189,7 +86170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a2c46f8c49767749bf19a746dd89efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distAttack: 2
+  distAttack: 0
 --- !u!195 &6334826066815745382
 NavMeshAgent:
   m_ObjectHideFlags: 0

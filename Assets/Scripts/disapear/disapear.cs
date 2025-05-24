@@ -13,22 +13,22 @@ public enum Map
 
 public class BoxDisabler : MonoBehaviourPunCallbacks
 {
-    public int requiredPlayers = 4;
-    public float countdownTime = 15f;
+    [SerializeField] private int requiredPlayers = 4;
+    [SerializeField] private float countdownTime = 15f;
     [SerializeField] private GameObject boxSpawn = null;
 
     private GameObject playerCanvas;
     private TMP_Text countdownText;
     private bool gameStarted = false;
 
-    public Map map;
-    public LavaFlow flow = null;
+    [SerializeField] private Map map;
+    [SerializeField] private LavaFlow flow = null;
 
 
-    public SkillBasedMapGenerator generator = null;
+    [SerializeField] private SkillBasedMapGenerator generator = null;
 
 
-    public AudioSource tickStart;
+    [SerializeField] private AudioSource tickStart;
 
 
     // Cinématiques

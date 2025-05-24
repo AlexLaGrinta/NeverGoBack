@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class ArcherMob : MonoBehaviour
 {
-    public GameObject prefabProjectile;
-    public Transform pointDeTir;
-    public float cadenceTir = 0.7f;    // Temps entre deux tirs (en secondes)
-    public float vitesseProjectile = 10f;
-    public float rangeDeTir = 15f;
+    [SerializeField] private GameObject prefabProjectile;
+    [SerializeField] private Transform pointDeTir;
+    [SerializeField] private float cadenceTir = 0.7f;    
+    [SerializeField] private float vitesseProjectile = 10f;
+    [SerializeField] private float rangeDeTir = 15f;
     
     private Transform cibleActuelle = null;
     private float prochainTir = 0f;
@@ -18,11 +18,9 @@ public class ArcherMob : MonoBehaviour
             float distance = Vector3.Distance(transform.position, cibleActuelle.position);
             if (distance <= rangeDeTir)
             {
-                // Regarder vers le joueur (facultatif)
                 Vector3 direction = (cibleActuelle.position - pointDeTir.position).normalized;
-                pointDeTir.forward = direction; // Optionnel : vise le joueur
+                pointDeTir.forward = direction; 
 
-                // Tirer si le cooldown est ok
                 if (Time.time >= prochainTir)
                 {
                     Tirer(direction);
@@ -44,17 +42,15 @@ public class ArcherMob : MonoBehaviour
             rb.linearVelocity = direction * vitesseProjectile;
     }
 
-    // Détection entrée dans la zone
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             cibleActuelle = other.transform;
-            prochainTir = Time.time; // Peut tirer tout de suite
+            prochainTir = Time.time; 
         }
     }
 
-    // Détection sortie de la zone
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))

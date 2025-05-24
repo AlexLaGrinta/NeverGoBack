@@ -5,15 +5,15 @@ using System.Collections;
 
 public class StartMaze : MonoBehaviour
 {
-    public Transform teleportDestination;
+    [SerializeField] private Transform teleportDestination;
 
-    public VideoPlayer player;
+    [SerializeField] private VideoPlayer player;
 
-    public Canvas videoCanva;
+    [SerializeField] private Canvas videoCanva;
 
-    public AudioSource killerAudio;
+    [SerializeField] private AudioSource killerAudio;
 
-    public GameObject DirectLight;
+    [SerializeField] private GameObject DirectLight;
 
 
     private bool hasPlayed = false;

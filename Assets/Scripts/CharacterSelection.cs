@@ -3,8 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class CharacterSelection : MonoBehaviour
 {
-	public GameObject[] characters;
-	public int selectedCharacter = 0;
+	[SerializeField] private GameObject[] characters;
+	[SerializeField] private int selectedCharacter = 0;
 
 
 

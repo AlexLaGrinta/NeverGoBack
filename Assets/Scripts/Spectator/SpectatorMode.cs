@@ -28,7 +28,7 @@ public class SpectatorMode : MonoBehaviourPun
 
     private List<GameObject> players; // Liste des joueurs observables
     private int currentPlayerIndex = 0; // Index du joueur actuellement observé
-    public bool _isSpectatorModeActive; // Active le mode spectateur
+    private bool _isSpectatorModeActive; // Active le mode spectateur
     private List<string> winners = new List<string>(); // Liste des gagnants
     private string nickname; // Pseudo du joueur local
     private string top = "";

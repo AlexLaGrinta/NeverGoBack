@@ -4981,7 +4981,6 @@ MonoBehaviour:
   camera: {fileID: 8258508339544783999}
   cine: {fileID: 7280620546640473464}
   Player: {fileID: 3812056685087570079}
-  nickname: 
   nicknameText: {fileID: 2408507240088731417}
 --- !u!114 &4133041203420225067
 MonoBehaviour:

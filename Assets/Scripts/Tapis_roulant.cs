@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class MovingFloorTrap : MonoBehaviour
 {
-    public float moveSpeed = 1.0f;         // Vitesse du déplacement
-    public Vector3 moveDirection = Vector3.back; // Direction (par défaut: recule en Z)
+    [SerializeField] private float moveSpeed = 1.0f;         // Vitesse du déplacement
+    [SerializeField] private Vector3 moveDirection = Vector3.back; // Direction (par défaut: recule en Z)
     private bool shouldMove = false;
 
     void OnCollisionEnter(Collision collision)

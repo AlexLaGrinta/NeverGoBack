@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class PlateformeReapparition : MonoBehaviour
 {
-    public float delaiDisparition = 0.1f;
-    public float delaiReapparition = 2f;
+    [SerializeField] private float delaiDisparition = 0.1f;
+    [SerializeField] private float delaiReapparition = 2f;
 
     private void OnTriggerEnter(Collider other)
     {

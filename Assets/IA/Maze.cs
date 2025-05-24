@@ -8,9 +8,9 @@ using Photon.Pun;
 public class MapLocation
 {
 
-    public int x;
+    public int x { get; set; }
 
-    public int z;
+    public int z { get; set; }
 
     
     public MapLocation(int _x, int _z)
@@ -50,19 +50,19 @@ public class MapLocation
 public class Maze : MonoBehaviourPunCallbacks
 {
 
-    public int width = 10;
-    public int height = 10;
+    private int width = 20;
+    private int height = 20;
 
-    public byte[,] map;
+    private byte[,] map;
 
-    public int scale = 6;
+    private int scale = 6;
 
 
     private List<Vector3> allPosMaze = new List<Vector3>();
 
     public GameObject Cube;
 
-    public List<Vector3> bannedCubes = new List<Vector3> { 
+    private List<Vector3> bannedCubes = new List<Vector3> { 
         new Vector3 (6,0,6),
         new Vector3 (12,0,6),
         new Vector3 (6,0,12),
@@ -73,7 +73,7 @@ public class Maze : MonoBehaviourPunCallbacks
     };
 
 
-    public List<MapLocation> directions = new List<MapLocation>() { 
+    private List<MapLocation> directions = new List<MapLocation>() { 
         new MapLocation(1,0),
         new MapLocation(0,1),
         new MapLocation(-1,0),

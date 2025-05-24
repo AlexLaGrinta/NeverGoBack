@@ -3,8 +3,8 @@ using System.Collections;
 
 public class FallingPlatform : MonoBehaviour
 {
-    public float delayBeforeFall = 1.5f;
-    public float respawnTime = 2f;
+    [SerializeField] private float delayBeforeFall = 1.5f;
+    [SerializeField] private float respawnTime = 2f;
 
     private Rigidbody rb;
     private Vector3 originalPosition;

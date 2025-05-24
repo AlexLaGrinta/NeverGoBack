@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class Plat_g_d : MonoBehaviour
 {
-    public float moveSpeed = 2f;       // Vitesse de déplacement
-    public float moveDistance = 3f;    // Distance de déplacement sur l'axe Z
+    [SerializeField] private float moveSpeed = 2f;       // Vitesse de déplacement
+    [SerializeField] private float moveDistance = 3f;    // Distance de déplacement sur l'axe Z
 
     private Vector3 startPosition;
     private bool movingForward = true;

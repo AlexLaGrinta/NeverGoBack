@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class KnifeIdleMotion : MonoBehaviour
 {
-    public float amplitude = 0.1f; // Hauteur du mouvement
-    public float frequency = 1f;   // Vitesse du mouvement
+    [SerializeField] private float amplitude = 0.1f; // Hauteur du mouvement
+    [SerializeField] private float frequency = 1f;   // Vitesse du mouvement
 
     private Vector3 startPosition;
 

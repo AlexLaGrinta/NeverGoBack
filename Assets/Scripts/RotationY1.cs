@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class RotateOnY : MonoBehaviour
 {
-    public float rotationSpeed = 45f; // en degrés par seconde
+    [SerializeField] private float rotationSpeed = 45f; // en degrés par seconde
 
     void Update()
     {

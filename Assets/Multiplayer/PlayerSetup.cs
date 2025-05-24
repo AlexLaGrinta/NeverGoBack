@@ -13,7 +13,7 @@ public class PlayerSetup : MonoBehaviour
     public GameObject Player;
 
 
-    public string nickname;
+    public string nickname { get; set; }
 
     public TextMeshPro nicknameText;
 

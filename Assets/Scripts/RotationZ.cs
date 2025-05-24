@@ -3,7 +3,7 @@ using UnityEngine;
 public class RotateZ : MonoBehaviour
 {
     // Vitesse de rotation dans la direction Z (modifiable depuis l'inspecteur)
-    public float rotationSpeed = 50f;
+    [SerializeField] private float rotationSpeed = 50f;
 
     void Update()
     {

@@ -4,16 +4,15 @@ using System.Collections.Generic;
 public class MazeEnd : MonoBehaviour
 {
 
-    public SkillBasedMapGenerator generator;
+    [SerializeField] private SkillBasedMapGenerator generator;
 
     private Vector3[]  allPos;
 
-    public GameObject lava;
+    [SerializeField] private GameObject lava;
 
 
-    public AudioSource killerAudio;
+    [SerializeField] private AudioSource killerAudio;
 
-    public GameObject DirectLight;
 
 
 

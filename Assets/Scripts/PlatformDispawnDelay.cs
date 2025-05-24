@@ -3,8 +3,8 @@ using System.Collections;
 
 public class DisappearingPlatformDelay : MonoBehaviour
 {
-    public float intervalleSecondes = 3f; // Temps entre apparition et disparition
-    public float startDelay = 0f; // Décalage avant la première disparition
+    [SerializeField] private float intervalleSecondes = 3f; // Temps entre apparition et disparition
+    [SerializeField] private float startDelay = 0f; // Décalage avant la première disparition
 
     private MeshRenderer meshRenderer;
     private Collider platformCollider;

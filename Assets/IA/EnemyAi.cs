@@ -28,7 +28,6 @@ public class EnnemiSuiviNavMesh : MonoBehaviour
 
 
 
-        // Trouver le joueur le plus proche
         Transform joueurProche = players[0].transform;
         float minDist = Vector3.Distance(transform.position, joueurProche.position);
 

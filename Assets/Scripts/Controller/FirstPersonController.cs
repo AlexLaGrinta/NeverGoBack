@@ -3,13 +3,13 @@ using Cinemachine;
 
 public class FirstPersonController : MonoBehaviour
 {
-    public Transform Joueur;
-    public CinemachineVirtualCamera virtualCamera;
-    public float mouseSensitivity = 2f;
+    [SerializeField] private Transform Joueur;
+    [SerializeField] private CinemachineVirtualCamera virtualCamera;
+    public float mouseSensitivity { get; set; } = 1f;
     private Transform cameraTransform;
 
 
-    public Transform character;
+    [SerializeField] private Transform character;
     private float cameraVerticalRotation = 0f;
 
     void Start()

@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class PanelSwitcher : MonoBehaviour
 {
-    public GameObject currentPanel;  // Le panel actuel qu'on veut cacher
-    public GameObject targetPanel;   // Le panel vers lequel on veut aller
+    [SerializeField] private GameObject currentPanel;  // Le panel actuel qu'on veut cacher
+    [SerializeField] private GameObject targetPanel;   // Le panel vers lequel on veut aller
 
     public void SwitchPanel()
     {

@@ -3,9 +3,9 @@ using System.Collections;
 
 public class WallMover : MonoBehaviour
 {
-    public Vector3 direction = Vector3.forward; // Direction du mouvement
-    public float speed = 2f;                    // Vitesse du déplacement
-    public float lifeTime = 5f;                 // Temps avant disparition du mur
+    [SerializeField] private Vector3 direction = Vector3.forward; // Direction du mouvement
+    [SerializeField] private float speed = 2f;                    // Vitesse du déplacement
+    [SerializeField] private float lifeTime = 5f;                 // Temps avant disparition du mur
 
     void Start()
     {
