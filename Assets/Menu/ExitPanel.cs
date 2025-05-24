@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CloseSettingsPanel : MonoBehaviour
 {
-    public GameObject settingsPanel; // Référence au panneau des paramètres
+    [SerializeField] private GameObject settingsPanel; // Référence au panneau des paramètres
 
     public void ClosePanel()
     {

@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class OpenSettingsPanel : MonoBehaviour
 {
-    public GameObject settingsPanel;
-    public GameObject mainMenuPanel;
+    [SerializeField] private GameObject settingsPanel;
+    [SerializeField] private GameObject mainMenuPanel;
 
     void Start()
     {

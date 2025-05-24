@@ -89,7 +89,14 @@ public class BoxDisabler : MonoBehaviourPunCallbacks
         {
             countdownText = playerCanvas.GetComponentInChildren<TMP_Text>();
             //playerCanvas.SetActive(false);
-            countdownText.text = "";
+            if (photonView != null && photonView.IsMine)
+            {
+                countdownText.text = "Press F1 to start the game";
+            }
+            else
+            {
+                countdownText.text = "";
+            }
         }
         else
         {
@@ -99,7 +106,7 @@ public class BoxDisabler : MonoBehaviourPunCallbacks
 
     private void Update()
     {
-        if (PhotonNetwork.IsMasterClient && !gameStarted && Input.GetKeyDown(KeyCode.End))
+        if (PhotonNetwork.IsMasterClient && !gameStarted && Input.GetKeyDown(KeyCode.F1))
         {
             photonView.RPC("StartCountdown", RpcTarget.AllBuffered);
         }
@@ -187,6 +194,13 @@ public class BoxDisabler : MonoBehaviourPunCallbacks
         }
         CinematicCamera.SetActive(false);
 
+        if (PhotonNetwork.IsMasterClient)
+        {
+            PhotonNetwork.CurrentRoom.IsOpen = false;     
+            PhotonNetwork.CurrentRoom.IsVisible = false;  
+        }
+
+
         photonView.RPC("DesactivateCanvas", RpcTarget.AllBuffered);
     }
 
@@ -204,6 +218,13 @@ public class BoxDisabler : MonoBehaviourPunCallbacks
         {
             playerCanvas.SetActive(false);
         }
+
+        if (PhotonNetwork.IsMasterClient)
+        {
+            PhotonNetwork.CurrentRoom.IsOpen = false;
+            PhotonNetwork.CurrentRoom.IsVisible = false;
+        }
+
         CinematicCamera.SetActive(false);
         photonView.RPC("DesactivateCanvas", RpcTarget.AllBuffered);
     }

@@ -3,10 +3,10 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class PlayButton : MonoBehaviour
 {
-    public Button PLAY;
+    [SerializeField] private Button PLAY;
 
-    public Canvas Gamemode;
-    public Canvas Main;
+    [SerializeField] private Canvas Gamemode;
+    [SerializeField] private Canvas Main;
 
     private void Start()
     {

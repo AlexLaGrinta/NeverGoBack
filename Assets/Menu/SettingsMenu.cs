@@ -7,17 +7,17 @@ using System.Collections.Generic;
 public class SettingsMenu : MonoBehaviour
 {
 
-    public TextMeshProUGUI FOVtext;
-    public TextMeshProUGUI Sensitext;
-    public Canvas Settings;
-    public AudioSource music;
+    [SerializeField] private TextMeshProUGUI FOVtext;
+    [SerializeField] private TextMeshProUGUI Sensitext;
+    [SerializeField] private Canvas Settings;
+    [SerializeField] private AudioSource music;
 
-    public AudioMixer mixer;
+    [SerializeField] private AudioMixer mixer;
 
     // Résolution
-    public TMP_Dropdown resolutionDropdown;
-    public Button windowedButton;
-    public TMP_Text windowedButtonText;
+    [SerializeField] private TMP_Dropdown resolutionDropdown;
+    [SerializeField] private Button windowedButton;
+    [SerializeField] private TMP_Text windowedButtonText;
 
     private Resolution[] resolutions;
     private bool isFullScreen;

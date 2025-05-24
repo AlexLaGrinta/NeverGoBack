@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class QuitGame : MonoBehaviour
 {
-    public Button QUIT; // Assurez-vous d'assigner ce bouton dans l'inspecteur Unity
+    [SerializeField] private Button QUIT; 
 
     void Start()
     {

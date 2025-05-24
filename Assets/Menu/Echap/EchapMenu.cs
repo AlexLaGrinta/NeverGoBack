@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 public class EchapMenu : MonoBehaviour
 {
 
-    public GameObject player;
-    public Canvas Echap;
-    public Canvas Settings;
+    [SerializeField] private GameObject player;
+    [SerializeField] private Canvas Echap;
+    [SerializeField] private Canvas Settings;
 
     void Start()
     {

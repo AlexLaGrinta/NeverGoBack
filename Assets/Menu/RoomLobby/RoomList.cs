@@ -10,11 +10,11 @@ public class RoomList : MonoBehaviourPunCallbacks
 {
     public static RoomList Instance;
 
-    public GameObject roomManagerGameobject;
-    public RoomManager roomManager;
+    [SerializeField] private GameObject roomManagerGameobject;
+    [SerializeField] private RoomManager roomManager;
 
-    [Header("UI")] public Transform roomListParent;
-    public GameObject roomListItemPrefab;
+    [Header("UI")] [SerializeField] private Transform roomListParent;
+    [SerializeField] private GameObject roomListItemPrefab;
 
     private List<RoomInfo> cachedRoomList = new List<RoomInfo>();
 

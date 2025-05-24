@@ -4,8 +4,8 @@ using Cinemachine;
 
 public class PlayerOpenMenu : MonoBehaviourPun
 {
-    public Canvas Echap;
-    public Canvas Settings;
+    [SerializeField] private Canvas Echap;
+    [SerializeField] private Canvas Settings;
 
 
     void Update()

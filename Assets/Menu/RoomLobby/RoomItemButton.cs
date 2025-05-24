@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class RoomItemButton : MonoBehaviour
 {
-    public string RoomName;
+    public string RoomName { get; set; }
     
     public void OnButtonPressed()
     {

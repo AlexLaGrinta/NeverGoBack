@@ -3,7 +3,7 @@ using Photon.Pun;
 using UnityEngine.Video;
 using System.Collections;
 
-public class StartMaze : MonoBehaviour
+public class StartMaze : MonoBehaviourPunCallbacks
 {
     [SerializeField] private Transform teleportDestination;
 
@@ -15,11 +15,16 @@ public class StartMaze : MonoBehaviour
 
     [SerializeField] private GameObject DirectLight;
 
+    [SerializeField] private GameObject monster;
+
 
     private bool hasPlayed = false;
 
 
-
+    private void Start()
+    {
+        monster.SetActive(false);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -44,6 +49,21 @@ public class StartMaze : MonoBehaviour
         }
     }
 
+
+
+    private IEnumerator SpawnMonster()
+    {
+        yield return new WaitForSeconds(2f);
+        monster.SetActive(true);
+    }
+
+
+    [PunRPC]
+    private void StartRoutineMonster()
+    {
+        StartCoroutine(SpawnMonster());
+    }
+
     private IEnumerator PlayAndTeleportCoroutine(PhotonView playerPhotonView)
     {
         videoCanva.gameObject.SetActive(true);
@@ -62,6 +82,10 @@ public class StartMaze : MonoBehaviour
             killerAudio.Play();
             DirectLight.SetActive(false);
             playertp.Teleport(teleportDestination.position);
+            if (!monster.activeSelf)
+            {
+                photonView.RPC("StartRoutineMonster", RpcTarget.AllBuffered);
+            }
             playerPhotonView.RPC("SyncTeleport", RpcTarget.Others, teleportDestination.position);
         }
     }
