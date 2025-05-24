@@ -15082,7 +15082,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 8593791192047424874, guid: ef7148b3fe80b1466b73d00b3717b79c, type: 3}
+  - {fileID: 2100000, guid: 378f33bb7e5020c928dcfcea78d6b38d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -17674,7 +17674,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 8593791192047424874, guid: ef7148b3fe80b1466b73d00b3717b79c, type: 3}
+  - {fileID: 2100000, guid: 378f33bb7e5020c928dcfcea78d6b38d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -23192,6 +23192,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   teleportPosition: {x: 442.922, y: 150.511, z: 521.593}
+  staticTeleportDelay: 3
+  velocityThreshold: 0.01
 --- !u!23 &1309015291439114933
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -27542,7 +27544,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 8593791192047424874, guid: ef7148b3fe80b1466b73d00b3717b79c, type: 3}
+  - {fileID: 2100000, guid: 378f33bb7e5020c928dcfcea78d6b38d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -34521,6 +34523,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   teleportPosition: {x: 439.058, y: 134.33, z: 520.757}
+  staticTeleportDelay: 3
+  velocityThreshold: 0.01
 --- !u!222 &2118338945756406604
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -37883,7 +37887,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 8593791192047424874, guid: ef7148b3fe80b1466b73d00b3717b79c, type: 3}
+  - {fileID: 2100000, guid: 378f33bb7e5020c928dcfcea78d6b38d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -40580,6 +40584,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   teleportPosition: {x: 438.235, y: 142.29, z: 520.72}
+  staticTeleportDelay: 3
+  velocityThreshold: 0.01
 --- !u!4 &2531158603475312309
 Transform:
   m_ObjectHideFlags: 0
@@ -54657,6 +54663,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   teleportPosition: {x: 438.235, y: 142.29, z: 520.72}
+  staticTeleportDelay: 3
+  velocityThreshold: 0.01
 --- !u!1 &3582349854371940354
 GameObject:
   m_ObjectHideFlags: 0
@@ -68929,6 +68937,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   teleportPosition: {x: 422.5471, y: 114.7312, z: 504.916}
+  staticTeleportDelay: 3
+  velocityThreshold: 0.01
 --- !u!4 &4307771875962450535
 Transform:
   m_ObjectHideFlags: 0
@@ -74251,6 +74261,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   teleportPosition: {x: 392.801, y: 114.5868, z: 504.975}
+  staticTeleportDelay: 3
+  velocityThreshold: 0.01
 --- !u!33 &4686105514644966400
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -94104,6 +94116,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   teleportPosition: {x: 444.873, y: 141.618, z: 522.886}
+  staticTeleportDelay: 3
+  velocityThreshold: 0.01
 --- !u!33 &5734712819745650455
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -103816,7 +103830,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 8593791192047424874, guid: ef7148b3fe80b1466b73d00b3717b79c, type: 3}
+  - {fileID: 2100000, guid: 378f33bb7e5020c928dcfcea78d6b38d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -117234,6 +117248,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   teleportPosition: {x: 444.873, y: 141.618, z: 522.886}
+  staticTeleportDelay: 3
+  velocityThreshold: 0.01
 --- !u!23 &7487319580856365969
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -117724,6 +117740,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   teleportPosition: {x: 442.922, y: 150.511, z: 521.593}
+  staticTeleportDelay: 3
+  velocityThreshold: 0.01
 --- !u!23 &7522036414653594904
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -121111,6 +121129,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   teleportPosition: {x: 442.942, y: 138.201, z: 521.69}
+  staticTeleportDelay: 3
+  velocityThreshold: 0.01
 --- !u!64 &7771196099067300240
 MeshCollider:
   m_ObjectHideFlags: 0
